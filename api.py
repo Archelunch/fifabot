@@ -45,61 +45,61 @@ def save_data():
     dataset.to_json("fifadescriptors.json", orient="index", force_ascii=False, )
 
 
-# def updateDescriptors(desc, name, country):
-#     global savedDescriptors
-#     desc = list(desc)
-#     if len(desc) == 128:
-#         record = {
-#             "name": name,
-#             "descriptor": desc,
-#             "country": country
-#         }
-#         try:
-#             savedDescriptors.append(record)
-#         except AttributeError:
-#             print("error")
+def updateDescriptors(desc, name, country):
+    global savedDescriptors
+    desc = list(desc)
+    if len(desc) == 128:
+        record = {
+            "name": name,
+            "descriptor": desc,
+            "country": country
+        }
+        try:
+            savedDescriptors.append(record)
+        except AttributeError:
+            print("error")
 
 
-# def loadDescriptors():
-#     with open("fifadescriptors.json", 'r') as file:
-#         savedDescriptors = loads(file.read())
-#         file.close()
-#     return savedDescriptors
+def loadDescriptors():
+    with open("fifadescriptors.json", 'r') as file:
+        savedDescriptors = loads(file.read())
+        file.close()
+    return savedDescriptors
 
 
-# def saveDescriptors(savedDescriptors):
-#     with open("fifadescriptors.json", 'w') as file:
-#         file.write(dumps(savedDescriptors))
-#         file.close()
+def saveDescriptors(savedDescriptors):
+    with open("fifadescriptors.json", 'w') as file:
+        file.write(dumps(savedDescriptors))
+        file.close()
 
 
-# def img_parse(path, country):
-#     dirpath = os.path.join(path, country)
-#     people_files = glob(os.path.join(dirpath, "*"))
-#     global savedDescriptors
-#     print("Starting")
-#     for people in people_files:
-#         img = io.imread(people)
-#         img = img[:, :, :3].copy()
-#         tag = people.split('\\')[-1].split('_')
-#         try:
-#             updateDescriptors(extract_descriptor(img), "{} {}".format(tag[0], tag[1]), country)
-#         except Exception as e:
-#             print(people, e)
-#     saveDescriptors(savedDescriptors)
-#     print("Finished")
+def img_parse(path, country):
+    dirpath = os.path.join(path, country)
+    people_files = glob(os.path.join(dirpath, "*"))
+    global savedDescriptors
+    print("Starting")
+    for people in people_files:
+        img = io.imread(people)
+        img = img[:, :, :3].copy()
+        tag = people.split('\\')[-1].split('_')
+        try:
+            updateDescriptors(extract_descriptor(img), "{} {}".format(tag[0], tag[1]), country)
+        except Exception as e:
+            print(people, e)
+    saveDescriptors(savedDescriptors)
+    print("Finished")
 
 
-# def extract_descriptor(img):
-#     try:
-#         face_face = []
-#         dets_webcam = detector(img)
-#         for k, d in enumerate(dets_webcam):
-#             shape = sp(img, d)
-#             face_face = facerec.compute_face_descriptor(img, shape, 100)
-#         return face_face
-#     except RuntimeError:
-#         print('error')
+def extract_descriptor(img):
+    try:
+        face_face = []
+        dets_webcam = detector(img)
+        for k, d in enumerate(dets_webcam):
+            shape = sp(img, d)
+            face_face = facerec.compute_face_descriptor(img, shape, 100)
+        return face_face
+    except RuntimeError:
+        print('error')
 
 
 def detect(frame):
@@ -135,12 +135,12 @@ def find(desc, length=1):
     else:
         return []
 
-# detector = dlib.get_frontal_face_detector()
-# sp = dlib.shape_predictor('shape_predictor_5_face_landmarks.dat')
-# facerec = dlib.face_recognition_model_v1('dlib_face_recognition_resnet_model_v1.dat')
+detector = dlib.get_frontal_face_detector()
+sp = dlib.shape_predictor('shape_predictor_5_face_landmarks.dat')
+facerec = dlib.face_recognition_model_v1('dlib_face_recognition_resnet_model_v1.dat')
 
-# try:
-#     savedDescriptors = loadDescriptors()
-# except:
-#     savedDescriptors = list()
+try:
+    savedDescriptors = loadDescriptors()
+except:
+    savedDescriptors = list()
 
