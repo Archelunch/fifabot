@@ -10,7 +10,7 @@ from telegram.ext.dispatcher import run_async
 
 @run_async
 def handle_text(bot, update):
-    bot.sendMessage(chat_id=update.message.chat_id, text="Привет! Пришли мне фото, и я скажу, на какого футболиста сборной РФ ты похож.")
+    bot.sendMessage(chat_id=update.message.chat_id, text="Привет! Пришли мне фото, и я скажу, на какого футболиста из сборных-участниц  ЧМ по футболу 2018 ты похож.")
 
 
 @run_async
@@ -31,7 +31,7 @@ def handle_photo(bot, update):
 
 @run_async
 def handle_command(bot, update):
-    bot.sendMessage(chat_id=update.message.chat_id, text="Привет! Пришли мне фото, и я скажу, на какого футболиста сборной РФ ты похож.")
+    bot.sendMessage(chat_id=update.message.chat_id, text="Привет! Пришли мне фото, и я скажу, на какого футболиста из сборных-участниц  ЧМ по футболу 2018 ты похож.")
 
 
 
