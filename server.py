@@ -37,7 +37,7 @@ def handle_command(bot, update):
 
 #def main():
 api.load_data()
-updater = Updater(token='575308485:AAHO2daTi9bwAcfZu2_mqcoM0I7unud0uXw')
+updater = Updater(token='524028976:AAHQO4e9EMGIj2sl1fo5Gy13uPUxopHSRvw')
 text_handler = MessageHandler(Filters.text, handle_text)
 command_handler = MessageHandler(Filters.command, handle_command)
 photo_handle = MessageHandler(Filters.photo, handle_photo)
