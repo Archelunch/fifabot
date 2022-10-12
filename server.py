@@ -8,6 +8,8 @@ import os
 from skimage import io
 from telegram.ext.dispatcher import run_async
 
+TOKEN = "#######"
+
 @run_async
 def handle_text(bot, update):
     bot.sendMessage(chat_id=update.message.chat_id, text="Привет! Пришли мне фото, и я скажу, на какого футболиста из сборных-участниц  ЧМ по футболу 2018 ты похож.")
@@ -37,7 +39,7 @@ def handle_command(bot, update):
 
 #def main():
 api.load_data()
-updater = Updater(token='524028976:AAHQO4e9EMGIj2sl1fo5Gy13uPUxopHSRvw')
+updater = Updater(token=TOKEN)
 text_handler = MessageHandler(Filters.text, handle_text)
 command_handler = MessageHandler(Filters.command, handle_command)
 photo_handle = MessageHandler(Filters.photo, handle_photo)
